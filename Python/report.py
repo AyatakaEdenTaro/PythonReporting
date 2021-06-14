@@ -22,6 +22,8 @@ try:
     config_ini.read(CONFIG_INI_PATH, encoding="utf-8")
 
     REPLACE_SETTINGS_FOLDER = config_ini["REPORT"]["ReplaceSettingsFolder"]
+    BEFORE_FOLDER = config_ini["REPORT"]["BeforeFolder"]
+    AFTER_FOLDER = config_ini["REPORT"]["AfterFolder"]
 except KeyError as e:
     print("【ERROR】code00002")
     print("iniファイルの中身が存在しません。")
@@ -43,17 +45,26 @@ except configparser.ParsingError as e:
 
 # ファイル一覧取得(再帰的)
 files_path = glob.glob(os.path.join(REPLACE_SETTINGS_FOLDER,"**"), recursive=True)
-
-print("以下のPowerPointに画像を適用しました。")
+if len(files_path)<2:
+    print("【ERROR】code00004")
+    print("csvファイルが存在しません。")
+    print("config.iniのReplaceSettingsFolder配下にcsvファイルを配置してください。")
+print("PowerPointに画像を適用します。")
 
 for file_path in files_path:
     # 拡張子チェック
     if not os.path.splitext(file_path)[1] == ".csv":
         continue
 
-    # 画像ファイル名からPowerPointファイル名取得処理追加
+    # PowerPointファイルパス取得
+    pptx_name = os.path.basename(file_path).replace(os.path.splitext(file_path)[1],".pptx")
+    before_pptx_dir = os.path.join(BEFORE_FOLDER,pptx_name)
+    after_pptx_dir = os.path.join(AFTER_FOLDER,pptx_name)
+    print("(適用元)"+before_pptx_dir)
+    print("(適用先)"+after_pptx_dir)
 
     # 画像ファイル一覧の取得
+    ### 例外処理を追加する StopIteration (CSVファイルが空の時) ###
     replace_list = []
     with open(file_path,'r',encoding='UTF-8',newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
@@ -62,7 +73,35 @@ for file_path in files_path:
         for row in reader:
             replace_list.append(row)
 
-    print(replace_list)
+    ### 例外処理を追加する (pptxファイルが存在しない時) ###
+    # PowerPointファイル読み込み
+    prs = Presentation(before_pptx_dir)
+
+    # 画像の追加と配置元シェイプの削除
+    for row_index,replace_row in enumerate(replace_list) :
+        for i, sld in enumerate(prs.slides, start=1):
+            for shape in sld.shapes:
+                # <class 'pptx.shapes.picture.Picture'>を処理するときだけ
+                # shape.textでエラーが発生する
+                try:
+                    if(shape.text==replace_row[0]):
+                        sld.shapes.add_picture(replace_row[1],
+                        shape.left,
+                        shape.top,
+                        width=shape.width,
+                        height=shape.height)
+                        sp = shape.element
+                        sp.getparent().remove(sp)
+                except AttributeError:
+                    continue
+                except FileNotFoundError:
+                    print("【ERROR】code00007")
+                    print("csvファイルに存在しないファイルパスが記載されています。")
+                    print("(CSVファイルパス)"+file_path)
+                    print("("+str(row_index+1)+"行目)"+str(replace_row))
+
+    prs.save(after_pptx_dir)
+
 
 
 

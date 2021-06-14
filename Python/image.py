@@ -52,7 +52,7 @@ except configparser.ParsingError as e:
 # ファイル一覧取得(再帰的)
 files_path = glob.glob(os.path.join(BEFORE_FOLDER,"**"), recursive=True)
 
-print("以下の画像をトリミングしました。")
+print("画像をトリミングします。")
 
 for file_path in files_path:
     # 拡張子チェック
@@ -62,6 +62,8 @@ for file_path in files_path:
     before_img_path = file_path
     after_img_dir = os.path.dirname(file_path).replace(BEFORE_FOLDER,AFTER_FOLDER)
     after_img_path = os.path.join(after_img_dir,os.path.basename(file_path))
+    print("(適用元)"+before_img_path)
+    print("(適用先)"+after_img_path)
 
     # フォルダ作成(AfterにBeforeのフォルダが存在しない場合)
     if not os.path.exists(after_img_dir):
@@ -97,4 +99,3 @@ for file_path in files_path:
 
     trim_img = trim_img[0 : get_trim_y,0 : get_trim_x]
     cv2.imwrite(after_img_path, trim_img)
-    print(file_path)
