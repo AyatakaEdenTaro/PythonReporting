@@ -9,6 +9,7 @@ import console
 
 
 def start():
+    print("********************PowerPointの画像適用を開始します。********************")
     Display = console.display()
 
     # 変数定義
@@ -68,8 +69,6 @@ def start():
             "config.iniのReplaceSettingsFolderに設定したパス配下にcsvファイルを配置してください。")
         Display.error(msg_list)
         sys.exit()
-
-    print("********************PowerPointの画像適用を開始します。********************")
 
     for file_path in files_path:
         # 拡張子チェック

@@ -8,6 +8,7 @@ import console
 
 
 def start():
+    print("********************画像のトリミングを開始します。********************")
     Display = console.display()
 
     # 変数定義
@@ -62,8 +63,6 @@ def start():
 
     # ファイル一覧取得(再帰的)
     files_path = glob.glob(os.path.join(BEFORE_FOLDER, "**"), recursive=True)
-
-    print("********************画像のトリミングを開始します。********************")
 
     for file_path in files_path:
         # 拡張子チェック
