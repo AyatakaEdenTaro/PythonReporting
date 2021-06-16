@@ -23,6 +23,7 @@ def start():
         msg_list.append("iniファイルが存在しません。")
         msg_list.append("report.pyと同じ階層にconfig.iniを作成してください。")
         Display.error(msg_list)
+        print("********************PowerPointの画像適用を終了します。********************")
         sys.exit()
 
     # iniファイル読み取り
@@ -44,6 +45,7 @@ def start():
         msg_list.append("画像置換設定フォルダのファイルは再帰的に取得されます。")
         msg_list.append("csvのファイル以外は無視されます。")
         Display.error(msg_list)
+        print("********************PowerPointの画像適用を終了します。********************")
         sys.exit()
     except configparser.ParsingError:
         msg_list = list()
@@ -56,6 +58,7 @@ def start():
         msg_list.append("画像置換設定フォルダのファイルは再帰的に取得されます。")
         msg_list.append("csvのファイル以外は無視されます。")
         Display.error(msg_list)
+        print("********************PowerPointの画像適用を終了します。********************")
         sys.exit()
 
     # ファイル一覧取得(再帰的)
@@ -68,6 +71,7 @@ def start():
         msg_list.append(
             "config.iniのReplaceSettingsFolderに設定したパス配下にcsvファイルを配置してください。")
         Display.error(msg_list)
+        print("********************PowerPointの画像適用を終了します。********************")
         sys.exit()
 
     for file_path in files_path:
@@ -145,6 +149,7 @@ def start():
                         msg_list.append("(" + str(row_index + 1) + "行目)")
                         msg_list.append(str(replace_row))
                         Display.error(msg_list)
+                        continue
 
         prs.save(after_pptx_dir)
 

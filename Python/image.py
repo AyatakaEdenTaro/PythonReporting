@@ -22,6 +22,7 @@ def start():
         msg_list.append("iniファイルが存在しません。")
         msg_list.append("image.pyと同じ階層にconfig.iniを作成してください。")
         Display.error(msg_list)
+        print("********************画像のトリミングを終了します。********************")
         sys.exit()
 
     # iniファイル読み取り
@@ -45,6 +46,7 @@ def start():
         msg_list.append("4.パラメータFileExtensionにトリミングする画像ファイルの拡張子を空白区切りで指定します。")
         msg_list.append("OpenCVで処理できない拡張子を指定した場合はエラーが発生します。")
         Display.error(msg_list)
+        print("********************画像のトリミングを終了します。********************")
         sys.exit()
     except configparser.ParsingError:
         msg_list = list()
@@ -59,6 +61,7 @@ def start():
         msg_list.append("4.パラメータFileExtensionにトリミングする画像ファイルの拡張子を空白区切りで指定します。")
         msg_list.append("OpenCVで処理できない拡張子を指定した場合はエラーが発生します。")
         Display.error(msg_list)
+        print("********************画像のトリミングを終了します。********************")
         sys.exit()
 
     # ファイル一覧取得(再帰的)
@@ -93,6 +96,7 @@ def start():
             msg_list.append("以下のように修正してください。")
             msg_list.append("(修正例)./Image/PowerAutomate")
             Display.error(msg_list)
+            print("********************画像のトリミングを終了します。********************")
             sys.exit()
 
         # 画像トリミング開始
