@@ -21,6 +21,30 @@ def start():
         msg_list.append("【ERROR】code00001")
         msg_list.append("iniファイルが存在しません。")
         msg_list.append("image.pyと同じ階層にconfig.iniを作成してください。")
+        msg_list.append("config.iniは以下のように作成してください。")
+        msg_list.append("1.セクション[IMAGE]を追加します。")
+        msg_list.append(
+            "2.セクション[IMAGE]のパラメータBeforeFolderにトリミング前の画像フォルダを指定します。")
+        msg_list.append("3.セクション[IMAGE]のパラメータAfterFolderにトリミング後の画像フォルダを指定します。")
+        msg_list.append(
+            "4.セクション[IMAGE]のパラメータFileExtensionにトリミングする画像ファイルの拡張子を空白区切りで指定します。")
+        msg_list.append("5.セクション[REPORT]を追加します。")
+        msg_list.append(
+            "6.セクション[REPORT]のパラメータReplaceSettingsFolderに置換設定csvフォルダを指定します。")
+        msg_list.append(
+            "7.セクション[REPORT]のパラメータBeforeFolderに置換前のPowerPointフォルダを指定します。")
+        msg_list.append(
+            "8.セクション[REPORT]のパラメータAfterFolderに置換後のPowerPointフォルダを指定します。")
+        msg_list.append("(注意点)")
+        msg_list.append("トリミング処理の画像フォルダのファイルは再帰的に取得されます。")
+        msg_list.append(
+            "トリミング前の画像フォルダにフォルダが存在する場合、トリミング後の画像フォルダにフォルダを新たに作成します。")
+        msg_list.append("OpenCVで処理できない画像ファイルの拡張子を指定した場合はエラーが発生します。")
+
+        msg_list.append("PowerPoint置換処理の置換設定csvフォルダのファイルは再帰的に取得されます。")
+        msg_list.append("置換設定csvフォルダと同じ階層に置換前のPowerPointが無いとエラーが発生します。")
+        msg_list.append(
+            "置換前のPowerPointフォルダにフォルダが存在する場合、置換後のPowerPointフォルダにフォルダを新たに作成します。")
         Display.error(msg_list)
         print("********************画像のトリミングを終了します。********************")
         sys.exit()
@@ -37,14 +61,30 @@ def start():
         msg_list = list()
         msg_list.append("【ERROR】code00002")
         msg_list.append("iniファイルの中身が存在しません。")
-        msg_list.append("config.iniを以下のように作成してください。")
+        msg_list.append("config.iniは以下のように作成してください。")
         msg_list.append("1.セクション[IMAGE]を追加します。")
-        msg_list.append("2.パラメータBeforeFolderにトリミング前の画像フォルダを指定します。")
-        msg_list.append("画像フォルダのファイルは再帰的に取得されます。")
-        msg_list.append("3.パラメータAfterFolderにトリミング後の画像フォルダを指定します。")
-        msg_list.append("トリミング前の画像フォルダにフォルダが存在する場合は、フォルダを新たに作成します。")
-        msg_list.append("4.パラメータFileExtensionにトリミングする画像ファイルの拡張子を空白区切りで指定します。")
-        msg_list.append("OpenCVで処理できない拡張子を指定した場合はエラーが発生します。")
+        msg_list.append(
+            "2.セクション[IMAGE]のパラメータBeforeFolderにトリミング前の画像フォルダを指定します。")
+        msg_list.append("3.セクション[IMAGE]のパラメータAfterFolderにトリミング後の画像フォルダを指定します。")
+        msg_list.append(
+            "4.セクション[IMAGE]のパラメータFileExtensionにトリミングする画像ファイルの拡張子を空白区切りで指定します。")
+        msg_list.append("5.セクション[REPORT]を追加します。")
+        msg_list.append(
+            "6.セクション[REPORT]のパラメータReplaceSettingsFolderに置換設定csvフォルダを指定します。")
+        msg_list.append(
+            "7.セクション[REPORT]のパラメータBeforeFolderに置換前のPowerPointフォルダを指定します。")
+        msg_list.append(
+            "8.セクション[REPORT]のパラメータAfterFolderに置換後のPowerPointフォルダを指定します。")
+        msg_list.append("(注意点)")
+        msg_list.append("トリミング処理の画像フォルダのファイルは再帰的に取得されます。")
+        msg_list.append(
+            "トリミング前の画像フォルダにフォルダが存在する場合、トリミング後の画像フォルダにフォルダを新たに作成します。")
+        msg_list.append("OpenCVで処理できない画像ファイルの拡張子を指定した場合はエラーが発生します。")
+
+        msg_list.append("PowerPoint置換処理の置換設定csvフォルダのファイルは再帰的に取得されます。")
+        msg_list.append("置換設定csvフォルダと同じ階層に置換前のPowerPointが無いとエラーが発生します。")
+        msg_list.append(
+            "置換前のPowerPointフォルダにフォルダが存在する場合、置換後のPowerPointフォルダにフォルダを新たに作成します。")
         Display.error(msg_list)
         print("********************画像のトリミングを終了します。********************")
         sys.exit()
@@ -52,14 +92,30 @@ def start():
         msg_list = list()
         msg_list.append("【ERROR】code00003")
         msg_list.append("iniファイルの書き方が間違っています。")
-        msg_list.append("config.iniを以下のように設定してください。")
+        msg_list.append("config.iniは以下のように作成してください。")
         msg_list.append("1.セクション[IMAGE]を追加します。")
-        msg_list.append("2.パラメータBeforeFolderにトリミング前の画像フォルダを指定します。")
-        msg_list.append("画像フォルダのファイルは再帰的に取得されます。")
-        msg_list.append("3.パラメータAfterFolderにトリミング後の画像フォルダを指定します。")
-        msg_list.append("トリミング前の画像フォルダにフォルダが存在する場合は、フォルダを新たに作成します。")
-        msg_list.append("4.パラメータFileExtensionにトリミングする画像ファイルの拡張子を空白区切りで指定します。")
-        msg_list.append("OpenCVで処理できない拡張子を指定した場合はエラーが発生します。")
+        msg_list.append(
+            "2.セクション[IMAGE]のパラメータBeforeFolderにトリミング前の画像フォルダを指定します。")
+        msg_list.append("3.セクション[IMAGE]のパラメータAfterFolderにトリミング後の画像フォルダを指定します。")
+        msg_list.append(
+            "4.セクション[IMAGE]のパラメータFileExtensionにトリミングする画像ファイルの拡張子を空白区切りで指定します。")
+        msg_list.append("5.セクション[REPORT]を追加します。")
+        msg_list.append(
+            "6.セクション[REPORT]のパラメータReplaceSettingsFolderに置換設定csvフォルダを指定します。")
+        msg_list.append(
+            "7.セクション[REPORT]のパラメータBeforeFolderに置換前のPowerPointフォルダを指定します。")
+        msg_list.append(
+            "8.セクション[REPORT]のパラメータAfterFolderに置換後のPowerPointフォルダを指定します。")
+        msg_list.append("(注意点)")
+        msg_list.append("トリミング処理の画像フォルダのファイルは再帰的に取得されます。")
+        msg_list.append(
+            "トリミング前の画像フォルダにフォルダが存在する場合、トリミング後の画像フォルダにフォルダを新たに作成します。")
+        msg_list.append("OpenCVで処理できない画像ファイルの拡張子を指定した場合はエラーが発生します。")
+
+        msg_list.append("PowerPoint置換処理の置換設定csvフォルダのファイルは再帰的に取得されます。")
+        msg_list.append("置換設定csvフォルダと同じ階層に置換前のPowerPointが無いとエラーが発生します。")
+        msg_list.append(
+            "置換前のPowerPointフォルダにフォルダが存在する場合、置換後のPowerPointフォルダにフォルダを新たに作成します。")
         Display.error(msg_list)
         print("********************画像のトリミングを終了します。********************")
         sys.exit()
